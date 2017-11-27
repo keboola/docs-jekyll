@@ -1,9 +1,6 @@
-FROM ruby:2.3
+FROM ruby:2.4
 
 COPY Gemfile Gemfile.lock /code/
 WORKDIR /code
 
-RUN gem install bundle \
-  && gem install jekyll \
-  && bundle install
-
+RUN bundle install

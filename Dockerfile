@@ -10,7 +10,7 @@ ENV LANG=en_US.UTF-8
 ENV LANGUAGE=en_US:en
 ENV LC_ALL=en_US.UTF-8
 
-COPY Gemfile Gemfile.lock /code/
-WORKDIR /code
+COPY Gemfile Gemfile.lock /gem-code/
+WORKDIR /gem-code
 
 RUN bundle install

@@ -1,6 +1,6 @@
 # Docs Jekyll
 
-[![Docker Repository on Quay](https://quay.io/repository/keboola/docs-jekyll/status "Docker Repository on Quay")](https://quay.io/repository/keboola/docs-jekyll)
+[![GitHub Actions](https://github.com/keboola/docs-jekyll/actions/workflows/push.yml/badge.svg)](https://github.com/keboola/docs-jekyll/actions/workflows/push.yml)
 
 Base image for building our documentation pages:
 

@@ -1,0 +1,23 @@
+name: GitHub Actions
+on: [ push ]
+env:
+  REPOSITORY: "quay.io/keboola/docs-jekyll"
+  QUAY_USERNAME: "keboola+doc_jekylll_ci_push"
+  QUAY_PASSWORD: ${{ secrets.QUAY_PASSWORD }}
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: Build image
+        run: |
+          docker build -t ${REPOSITORY} .
+      - name: Deploy
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          docker login --username ${QUAY_USERNAME} --password $(QUAY_PASSWORD) quay.io
+          docker tag ${REPOSITORY}:latest ${REPOSITORY}:${GITHUB_TAG}
+          docker tag ${REPOSITORY}:latest ${REPOSITORY}:latest
+          docker push ${REPOSITORY}:${GITHUB_TAG}
+          docker push ${REPOSITORY}:latest

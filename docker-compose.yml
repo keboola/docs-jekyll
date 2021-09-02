@@ -1,0 +1,9 @@
+version: "3.4"
+
+services:
+  dev-update:
+    build:
+      context: .
+    command: ["sh", "-c", "cd /code/ && gem install bundler && bundler update"]
+    volumes:
+      - .:/code

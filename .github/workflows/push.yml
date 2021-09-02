@@ -16,6 +16,8 @@ jobs:
       - name: Deploy
         if: startsWith(github.ref, 'refs/tags/')
         run: |
+          set -e
+          GITHUB_TAG=${GITHUB_REF/refs\/tags\//}
           docker login --username ${QUAY_USERNAME} --password ${QUAY_PASSWORD} quay.io
           docker tag ${REPOSITORY}:latest ${REPOSITORY}:${GITHUB_TAG}
           docker tag ${REPOSITORY}:latest ${REPOSITORY}:latest
